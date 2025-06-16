@@ -12,11 +12,16 @@ const GlobalStyle = createGlobalStyle `
 
   html, body {
     background-color:rgb(250, 250, 250);
-    font-family: 'Arial', sans-serif;
     max-width: 100%;
     overflow-x: hidden; //impede rolagem horizontal em qualquer tipo de tela
   } 
 
+  input {
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  }
 
 
 
