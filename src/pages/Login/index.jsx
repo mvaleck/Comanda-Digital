@@ -1,7 +1,7 @@
 import img from "../../assets/date.png"
 import {Container, LoginSection } from "./style"
 import { Link } from "react-router-dom"; 
-import Cadastro from "../Cadastro";
+
 
 function Login () {
   return (
