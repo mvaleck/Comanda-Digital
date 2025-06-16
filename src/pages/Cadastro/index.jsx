@@ -4,6 +4,8 @@ import img from "../../assets/cadastro.png"
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import { db } from "../../firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 function Cadastro () {
 
@@ -18,8 +20,16 @@ function Cadastro () {
       return;
     } 
     createUserWithEmailAndPassword(auth, email, senha)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
+
+        // Salvando dados do usuário no Firestore
+        await setDoc (doc(db, "usuarios", user.uid), {
+          nome: nome,
+          email: user.email,
+          criadoEm: new Date()
+        });
+
         console.log('Uauário Cadastrado.', user);
         alert (`Bem vindo(a), ${nome}.. Cadastro realizado com sucesso`);
         navigate("/");
@@ -29,10 +39,6 @@ function Cadastro () {
         alert("Erro ao cadastrar: " + error.message);
       });
   };
-
-
-
-
 
   return (
     <div>
