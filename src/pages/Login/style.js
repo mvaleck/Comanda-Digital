@@ -12,5 +12,9 @@ export const LoginSection = styled.section `
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    p {
+        margin-top: 20px;
+    }
   
 `;
