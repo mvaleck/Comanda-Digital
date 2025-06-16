@@ -6,27 +6,27 @@ import Login from "./pages/Login/index.jsx";
 import Cadastro from "./pages/Cadastro/index.jsx"
 
 function App() {
-return (
-  <div> 
-   <BrowserRouter>
-    <GlobalStyle/>
-   <Routes> 
+  return (
+    <div> 
+      <BrowserRouter>
+        <GlobalStyle/>
+        <Routes> 
 
-   <Route path="/" element={<Login/>}/>
-   <Route path="/cadastro" element={<Cadastro/>}/>
-
-
+          <Route path="/" element={<Login/>}/>
+          <Route path="/cadastro" element={<Cadastro/>}/>
 
 
 
 
-</Routes>
 
-   </BrowserRouter>
+
+        </Routes>
+
+      </BrowserRouter>
     
     
     </div>
-);
+  );
 }
 
 export default App
