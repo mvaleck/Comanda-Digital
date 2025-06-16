@@ -23,6 +23,14 @@ const GlobalStyle = createGlobalStyle `
   border: 1px solid #ccc;
   }
 
+  button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  }
+
 
 
 `;
