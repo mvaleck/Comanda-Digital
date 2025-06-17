@@ -1,4 +1,4 @@
-import {Modal2, DisplayModal, Content, BtDetails} from "./style"
+import {Modal2, DisplayModal,BtsModalClientes, Content} from "./style"
 
 function ModalClientes () {
   return (
@@ -9,7 +9,12 @@ function ModalClientes () {
           <p>Telefone 11 5252-5222</p>
           <p>Status: Ativo</p>
           <p>Saldo devedor: R$ 40,85</p>
-          <BtDetails>Exibir detalhes</BtDetails>
+
+          <BtsModalClientes>
+            <button>Exibir detalhes</button>
+            <button>Adicionar Compra</button>
+          </BtsModalClientes>
+        
         </Content>
       </Modal2>
 

@@ -69,9 +69,14 @@ export const Content = styled.section `
     gap: 5px;
 `;
 
-export const BtDetails = styled.button `
-    background-color: rgb(181, 245, 177);
-    margin-top: 20px;
-    padding: 10px;
-    
+export const BtsModalClientes = styled.div  `
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+
+    button {
+        padding: 10px;
+        background-color: yellow;
+    }
 `;
+
