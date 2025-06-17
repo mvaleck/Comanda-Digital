@@ -1,8 +1,17 @@
+import { useState } from "react";
 import {Modal2, DisplayModal, BtsAddCancel,
   BtsModalClientes, Content, AddCompra} from "./style"
 
 function ModalClientes () {
 
+  const [addCompra, setAddCompra] = useState(false);
+
+  const handleOpenAddCompra = () => {
+    setAddCompra(prev => !prev);
+  };
+  const handleCloseAddCompra = () => {
+    setAddCompra(false)
+  }
   
   return (
     <div>
@@ -16,11 +25,11 @@ function ModalClientes () {
 
             <BtsModalClientes>
               <button>Exibir detalhes</button>
-              <button>Adicionar Compra</button>
+              <button onClick={handleOpenAddCompra}>Adicionar Compra</button>
             </BtsModalClientes>
           </Content>
 
-          <AddCompra>
+          {addCompra &&  <AddCompra>
             <h4>Produto</h4>
             <input type="text" />
             <h4>Preço</h4>
@@ -30,14 +39,18 @@ function ModalClientes () {
 
             <BtsAddCancel>
               <button>Adicionar</button>
-              <button>Cancelar</button>
+              <button onClick={handleCloseAddCompra}>Cancelar</button>
             </BtsAddCancel>
 
           </AddCompra>
+          }
+         
 
         </Modal2>
 
       </DisplayModal>
+
+
       
       
     
