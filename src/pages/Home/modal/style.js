@@ -80,3 +80,21 @@ export const BtsModalClientes = styled.div  `
     }
 `;
 
+export const AddCompra = styled.div `
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+`;
+
+export const BtsAddCancel  = styled.div  `
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    gap: 20px;
+   
+   button {
+    background-color: rgb(211, 243, 190);
+    padding: 10px;
+   }
+`;
