@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ModalCadastrar from "../pages/Home/modal/modalCadastrar";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-
+import profile from "../assets/profile.svg"
 
 function LayoutPadrao () {
 
@@ -23,6 +23,7 @@ function LayoutPadrao () {
         <Menu>
           <h1>Olá, Bar do Tonho</h1>
           <Link to="/">Sair</Link>
+          <Link to="perfil"><img src={profile} alt="" /></Link>
         </Menu>
       </section>            
 
@@ -35,7 +36,7 @@ function LayoutPadrao () {
         onClose={handleCloseModal}
       />}
 
-<main>
+      <main>
         <Outlet />
       </main>    
 

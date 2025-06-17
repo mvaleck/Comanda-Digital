@@ -6,6 +6,10 @@ export const Menu = styled.div `
     justify-content: space-around;
     padding: 20px ;
     align-items: center;
+
+    img {
+        width: 20px;
+    }
    
 `;
 
