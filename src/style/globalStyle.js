@@ -16,11 +16,12 @@ const GlobalStyle = createGlobalStyle `
     overflow-x: hidden; //impede rolagem horizontal em qualquer tipo de tela
   } 
 
-  input {
+  input, textarea {
   outline: none;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #ccc;
+  font-family: Arial;
   }
 
   button {
