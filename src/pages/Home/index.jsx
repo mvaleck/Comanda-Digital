@@ -2,6 +2,7 @@ import {Menu, Main} from "./style"
 import img from "../../assets/mene.png" 
 import { Link } from "react-router-dom";
 import ModalCadastrar from "./modal/modalCadastrar";
+import ModalClientes from "./modal/modalClientes"
 import { useState } from "react";
 
 function Home () {
@@ -32,6 +33,8 @@ function Home () {
       {openModalCadastro && <ModalCadastrar
         onClose={handleCloseModal}
       />}
+
+      <ModalClientes/>
   
       
     

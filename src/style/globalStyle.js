@@ -30,6 +30,12 @@ const GlobalStyle = createGlobalStyle `
   border: none;
   display: flex;
   align-items: center;
+  border-radius: 20px;
+
+    &:hover {
+    cursor: pointer;
+    }
+
   }
 
 
