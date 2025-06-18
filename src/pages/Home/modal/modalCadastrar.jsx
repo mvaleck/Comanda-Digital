@@ -2,51 +2,51 @@ import {Modal, BtAddClientes} from "./style"
 import close from "../../../assets/close.svg"
 import { criarClientes } from "../../../services/clienteService"
 import { useState } from "react"
-
-
-function ModalCadastrar ({onClose}) {
-
+function ModalCadastrar ({ onClose, atualizarClientes }) {
   const [nomeInput, setNomeInput] = useState("");
   const [telefoneInput, setTelefoneInput] = useState("");
 
-  const handleSalvarCliente = () => {
+  const handleSalvarCliente = async () => {
     const novoCliente = {
       nome: nomeInput,
       telefone: telefoneInput
-    }
-    criarClientes(novoCliente);
+    };
+    await criarClientes(novoCliente);
+
     setNomeInput("");
     setTelefoneInput("");
     onClose();
-  }
+
+    // Atualiza a lista na Home
+    if (atualizarClientes) {
+      atualizarClientes();
+    }
+  };
 
   return (
-    <div>
-
-
-      <Modal>
-        <button onClick={onClose}><img src={close} alt=""/></button>
-       
-        <label htmlFor=""> Nome do Cliente: </label>
-        <input type="text" 
-          value={nomeInput}
-          onChange={(e)=> setNomeInput(e.target.value)}
-        />
-
-        <label htmlFor=""> Telefone: </label>  
-        <input type="number"
-          value={telefoneInput}
-          onChange={(e)=> setTelefoneInput(e.target.value)}
-        />
-    
-        <textarea name="" id="" placeholder="Observação"></textarea>
+    <Modal>
+      <button onClick={onClose}><img src={close} alt=""/></button>
       
-        <BtAddClientes onClick={handleSalvarCliente}>Adicionar Cliente</BtAddClientes>
-    
-      </Modal>
+      <label>Nome do Cliente:</label>
+      <input
+        type="text"
+        value={nomeInput}
+        onChange={(e) => setNomeInput(e.target.value)}
+      />
 
-    </div>
+      <label>Telefone:</label>
+      <input
+        type="number"
+        value={telefoneInput}
+        onChange={(e) => setTelefoneInput(e.target.value)}
+      />
+
+      <textarea placeholder="Observação"></textarea>
+      
+      <BtAddClientes onClick={handleSalvarCliente}>Adicionar Cliente</BtAddClientes>
+    </Modal>
   );
-};
+}
+
 
 export default ModalCadastrar;

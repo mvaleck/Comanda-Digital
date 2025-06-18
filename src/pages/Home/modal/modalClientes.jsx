@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {Modal2, DisplayModal, BtsAddCancel,
   BtsModalClientes, Content, AddCompra} from "./style"
 
-import { buscarClientes } from "../../../services/clienteService";
 
-function ModalClientes () {
-  const [clientes, setClientes] = useState([]);
+function ModalClientes ({clientes}) {
+
   const [addCompra, setAddCompra] = useState(false);
 
   const handleOpenAddCompra = () => {
@@ -15,15 +14,6 @@ function ModalClientes () {
   const handleCloseAddCompra = () => {
     setAddCompra(false)
   }
-
-  const carregarClientes = async () => {
-    const lista = await buscarClientes();
-    setClientes(lista);
-  };
-
-  useEffect(() => {
-    carregarClientes();
-  }, []);
 
   
   return (

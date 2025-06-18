@@ -1,21 +1,10 @@
 import {Menu, Main} from "./style"
 import img from "../assets/mene.png"
 import { Link } from "react-router-dom";
-import ModalCadastrar from "../pages/Home/modal/modalCadastrar";
-import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import profile from "../assets/profile.svg"
 
 function LayoutPadrao () {
-
-  const [openModalCadastro, setOpenModalCadastro] = useState(false)
-
-  const handleOpenModal = () => {
-    setOpenModalCadastro(true)
-  };
-  const handleCloseModal = () => {
-    setOpenModalCadastro(false)
-  }
 
   return (
     <div>
@@ -29,12 +18,9 @@ function LayoutPadrao () {
 
       <Main> 
         <h1> <img src={img} alt="" />Clientes Consumação</h1>
-        <button onClick={handleOpenModal}>Cadastrar cliente</button>
       </Main>
 
-      {openModalCadastro && <ModalCadastrar
-        onClose={handleCloseModal}
-      />}
+     
 
       <main>
         <Outlet />
