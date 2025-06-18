@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {Modal2, DisplayModal, BtsAddCancel,
   BtsModalClientes, Content, AddCompra} from "./style"
 
@@ -24,7 +25,7 @@ function ModalClientes () {
             <p>Saldo devedor: R$ 40,85</p>
 
             <BtsModalClientes>
-              <button>Exibir detalhes</button>
+              <Link to="detalhes" >Exibir detalhes</Link>
               <button onClick={handleOpenAddCompra}>Adicionar Compra</button>
             </BtsModalClientes>
           </Content>

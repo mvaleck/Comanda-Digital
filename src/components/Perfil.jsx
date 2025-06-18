@@ -4,7 +4,7 @@ function Perfil () {
   return (
     <div> 
       <h1>teste</h1>
-    <Link to="/home"> teste</Link> 
+      <Link to="/home"> teste</Link> 
     </div>
   )
 }

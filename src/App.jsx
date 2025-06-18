@@ -8,6 +8,7 @@ import PrivateRoute from "./routes/PrivateRoute.jsx"
 import LayoutPadrao from "./components/LayoutPadrao.jsx";
 import Perfil from "./components/Perfil.jsx"
 import Home from "./pages/Home/index.jsx";
+import Detalhes from "./components/Detalhes/index.jsx"
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           }>
           <Route index element={<Home/>} />
           <Route path="perfil" element={<Perfil/>} />
+          <Route path="detalhes" element={<Detalhes/>} />
         </Route>
 
 
