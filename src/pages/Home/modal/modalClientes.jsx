@@ -2,18 +2,43 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import {Modal2, DisplayModal, BtsAddCancel,
   BtsModalClientes, Content, AddCompra} from "./style"
+import { adicionarCompra } from "../../../services/compraService";
 
 
 function ModalClientes ({clientes}) {
 
-  const [addCompra, setAddCompra] = useState(false);
+  const [clienteAtivo, setClienteAtivo] = useState(null);
+  const [produtoInput, setProdutoInput] = useState("");
+  const [precoInput, setPrecoInput] = useState("");
+  const [observacaoInput, setObservacaoInput] = useState("");
 
-  const handleOpenAddCompra = () => {
-    setAddCompra(prev => !prev);
-  };
-  const handleCloseAddCompra = () => {
-    setAddCompra(false)
+
+  const handleOpenAddCompra = (clienteId) => {
+    setClienteAtivo(clienteId);
   }
+  
+  const handleCloseAddCompra = () => {
+    setClienteAtivo(null);
+    setProdutoInput("");
+    setPrecoInput("");
+    setObservacaoInput("");
+  }
+  
+
+  const handleAddCompra = async () => {
+    
+    const compraComanda = {
+      produto: produtoInput,
+      preco: precoInput,
+      observacao: observacaoInput
+    };
+
+    const sucesso = await adicionarCompra(clienteAtivo, compraComanda);
+
+    if (sucesso) {
+      handleCloseAddCompra()
+    }
+  };
 
   
   return (
@@ -30,39 +55,48 @@ function ModalClientes ({clientes}) {
 
               <BtsModalClientes>
                 <Link to="detalhes" >Exibir detalhes</Link>
-                <button onClick={handleOpenAddCompra}>Adicionar Compra</button>
+                <button  onClick={() => handleOpenAddCompra(cliente.id)}>Adicionar Compra</button>
               </BtsModalClientes>
             </Content>
 
-            {addCompra &&  <AddCompra>
-              <h4>Produto</h4>
-              <input type="text" />
-              <h4>Preço</h4>
-              <input type="number" placeholder="R$" />
-              <h4>Obs:</h4>
-              <input type="text" placeholder="observação"/>
+            {clienteAtivo === cliente.id && (
+              <AddCompra>
+                <h4>Produto</h4>
+                <input
+                  type="text"
+                  value={produtoInput}
+                  onChange={(e) => setProdutoInput(e.target.value)}
+                />
 
-              <BtsAddCancel>
-                <button>Adicionar</button>
-                <button onClick={handleCloseAddCompra}>Cancelar</button>
-              </BtsAddCancel>
+                <h4>Preço</h4>
+                <input
+                  type="number"
+                  placeholder="R$"
+                  value={precoInput}
+                  onChange={(e) => setPrecoInput(e.target.value)}
+                />
 
-            </AddCompra>
-            }
+                <h4>Obs:</h4>
+                <input
+                  type="text"
+                  placeholder="observação"
+                  value={observacaoInput}
+                  onChange={(e) => setObservacaoInput(e.target.value)}
+                />
 
-
+                <BtsAddCancel>
+                  <button  onClick={handleAddCompra}>Adicionar</button>
+                  <button onClick={handleCloseAddCompra}>Cancelar</button>
+                </BtsAddCancel>
+              </AddCompra>
+            )}
           </Modal2>
         ))}
-       
-
       </DisplayModal>
-
-
-      
-      
-    
     </div>
   );
-};
+}
+
+      
 
 export default ModalClientes;
