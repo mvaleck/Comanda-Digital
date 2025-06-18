@@ -7,15 +7,19 @@ function ModalCadastrar ({ onClose, atualizarClientes }) {
   const [telefoneInput, setTelefoneInput] = useState("");
 
   const handleSalvarCliente = async () => {
+
     const novoCliente = {
       nome: nomeInput,
       telefone: telefoneInput
     };
-    await criarClientes(novoCliente);
+    
+    const sucesso = await criarClientes(novoCliente);
 
-    setNomeInput("");
-    setTelefoneInput("");
-    onClose();
+    if (sucesso) {
+      setNomeInput("");
+      setTelefoneInput("");
+      onClose();
+    };
 
     // Atualiza a lista na Home
     if (atualizarClientes) {

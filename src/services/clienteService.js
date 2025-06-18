@@ -10,6 +10,15 @@ export async function criarClientes(clienteData) {
     return;
   }
 
+  const nomeValido = clienteData.nome && clienteData.nome.trim() !== "";
+  const telefoneValido = clienteData.telefone && clienteData.telefone.trim() !== "";
+
+  if (!nomeValido || !telefoneValido) {
+    alert("Preencha todos os campos obrigatórios: nome e telefone.");
+    return false;
+    //não fecha modal quando os dados não sao válidos
+  }
+  
   const userId = user.uid;
 
   try {
@@ -19,8 +28,11 @@ export async function criarClientes(clienteData) {
       criadoEm: new Date()
     });
 
+
     console.log("Cliente cadastrado no estabelecimento")
     alert("Cliente cadastrado com sucesso!");
+    return true;
+    //fecha modal
 
   } catch (error) {
     console.error("Erro ao cadastrar Cliente: ", error)
