@@ -2,6 +2,7 @@ import ModalClientes from "./modal/modalClientes";
 import { buscarClientes } from "../../services/clienteService";
 import ModalCadastrar from "./modal/modalCadastrar";
 import { useState, useEffect } from "react";
+import {BtCadastrar} from "./style.js"
 
 function Home () {
 
@@ -25,7 +26,7 @@ function Home () {
   return (
     <div>
     
-      <button onClick={handleOpenModal}>Cadastrar cliente</button>
+      <BtCadastrar onClick={handleOpenModal}>Cadastrar cliente</BtCadastrar>
       {openModalCadastro && <ModalCadastrar
         onClose={handleCloseModal}
         atualizarClientes={carregarClientes}
