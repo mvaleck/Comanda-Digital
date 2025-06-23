@@ -1,5 +1,6 @@
 import {auth, db} from "../firebase"
 import {collection, addDoc, getDocs} from "firebase/firestore"
+import { doc, getDoc } from "firebase/firestore";
 
 //criar clientes
 export async function criarClientes(clienteData) {
@@ -64,6 +65,38 @@ export async function buscarClientes( ) {
   } catch (error) {
     console.error("Erro ao buscar clientes: ", error)
     return[];
+  }
+
+}
+
+//nome do estabelecimento
+export async function getNomeEstabelecimento() {
+  const user = auth.currentUser;
+
+  if (!user) {
+    alert("Usuário não encontrado");
+    console.log("Erro ao buscar nome do estabelecimento no GET");
+  }
+
+  const userId = user.uid;
+  console.log("UID do usuário logado:", userId);
+
+  try {
+    const docRef = doc(db, "usuarios", userId); //acessa a coleção
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const dados = docSnap.data();
+      return dados.nome || null; //retorna o nome
+    } else {
+      console.warn("Documento do usuário não encontrado")
+      return null;
+    } 
+
+
+  } catch (error){
+    console.error ("Erro", error)
+    return null;
   }
 
 }

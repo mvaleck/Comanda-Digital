@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation} from "react-router-dom";
 import { useEffect, useState } from "react";
 import {Title, Compras, Item, BtsCompra, SaldoDevedor} from "./style.js"
 import { detalhesComanda } from "../../services/compraService.js"
@@ -9,6 +9,9 @@ function Detalhes () {
   const [compras, setCompras] = useState([]);
   const [carregando, setCarregando] = useState(true);
 
+  const location = useLocation();
+  const cliente = location.state?.nome || "Cliente";
+  
   useEffect(() => {
     async function carregarComanda () {
       const dados = await detalhesComanda(id);
@@ -28,7 +31,7 @@ function Detalhes () {
     <div>
       <Title>
         <Link to="/home"> Voltar </Link>
-        <h1>Comanda de </h1>
+        <h1>Comanda de {cliente}</h1>
         <button>Apagar cliente</button>
       </Title>
 
