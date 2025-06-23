@@ -54,7 +54,7 @@ function ModalClientes ({clientes}) {
               <p>Saldo devedor: R$ 40,85</p>
 
               <BtsModalClientes>
-                <Link to="detalhes" >Exibir detalhes</Link>
+                <Link to={`detalhes/${cliente.id}`}>Exibir detalhes</Link>
                 <button  onClick={() => handleOpenAddCompra(cliente.id)}>Adicionar Compra</button>
               </BtsModalClientes>
             </Content>

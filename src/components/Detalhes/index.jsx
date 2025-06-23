@@ -1,12 +1,34 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import {Title, Compras, Item, BtsCompra, SaldoDevedor} from "./style.js"
+import { detalhesComanda } from "../../services/compraService.js"
 
 function Detalhes () {
+
+  const { id } = useParams();
+  const [compras, setCompras] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+
+  useEffect(() => {
+    async function carregarComanda () {
+      const dados = await detalhesComanda(id);
+      setCompras(dados);
+      setCarregando(false);
+      
+    }
+
+    carregarComanda();
+  }, [id]);
+
+  if (carregando) {
+    return <p>carregando Comanda</p>
+  }
+
   return (
     <div>
       <Title>
         <Link to="/home"> Voltar </Link>
-        <h1>Comanda de Milena Valeck</h1>
+        <h1>Comanda de </h1>
         <button>Apagar cliente</button>
       </Title>
 
@@ -15,26 +37,36 @@ function Detalhes () {
       </SaldoDevedor>
             
 
-      <Compras>
-        <Item>
-          <h1>Data</h1>
-          <p>24/05/2025</p>
-        </Item>
 
-        <Item> 
-          <h1>Produto: </h1> <p>Arroz</p>  
-        </Item>
+      {compras.length === 0 ? (<p>Nenhuma compra encontrada.</p>) : (
+        compras.map((compra)=> (
+          <Compras key={compra.id}>
+            <Item>
+              <h1>Data</h1>
+              <p>
+                {new Date(compra.criadoEm?.seconds *1000).toLocaleDateString("pt-BR")}
+              </p>
+            </Item>
+
+            <Item> 
+              <h1>Produto: </h1> 
+              <p>{compra.produto}</p>  
+            </Item>
     
-        <Item>
-          <h1>Preço</h1>
-          <p>R$ 23,88</p>
-        </Item>
+            <Item>
+              <h1>Preço</h1>
+              <p>R$ {Number(compra.produto)}</p>
+            </Item>
 
-        <BtsCompra>
-          <button>Pago?</button>
-          <button>Apagar</button>
-        </BtsCompra>
-      </Compras>
+            <BtsCompra>
+              <button>Pago?</button>
+              <button>Apagar</button>
+            </BtsCompra>
+
+          </Compras>
+        ))
+      )}
+     
 
     </div>
   );

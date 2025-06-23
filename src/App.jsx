@@ -29,7 +29,7 @@ function App() {
           }>
           <Route index element={<Home/>} />
           <Route path="perfil" element={<Perfil/>} />
-          <Route path="detalhes" element={<Detalhes/>} />
+          <Route path="detalhes/:id" element={<Detalhes/>} />
         </Route>
 
 
