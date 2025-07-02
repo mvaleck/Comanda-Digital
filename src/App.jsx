@@ -6,7 +6,7 @@ import Login from "./pages/Login/index.jsx";
 import Cadastro from "./pages/Cadastro/index.jsx"
 import PrivateRoute from "./routes/PrivateRoute.jsx"
 import LayoutPadrao from "./components/LayoutPadrao.jsx";
-import Perfil from "./components/Perfil.jsx"
+import Perfil from "./components/Perfil/index.jsx"
 import Home from "./pages/Home/index.jsx";
 import Detalhes from "./components/Detalhes/index.jsx"
 
