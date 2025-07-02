@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import {Modal2, DisplayModal, BtsAddCancel,
-  BtsModalClientes, Content, AddCompra} from "./style"
+  BtsModalClientes, Content, BtLink, AddCompra} from "./style"
 import { adicionarCompra } from "../../../services/compraService";
 
 
@@ -54,9 +53,9 @@ function ModalClientes ({clientes}) {
               <p>Saldo devedor: R$ 40,85</p>
 
               <BtsModalClientes>
-                <Link to={`detalhes/${cliente.id}`}
+                <BtLink to={`detalhes/${cliente.id}`}
                   state={{nome: cliente.nome}}
-                >Exibir detalhes</Link>
+                >Exibir detalhes</BtLink>
                 <button  onClick={() => handleOpenAddCompra(cliente.id)}>Adicionar Compra</button>
               </BtsModalClientes>
             </Content>

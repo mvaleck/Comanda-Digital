@@ -1,6 +1,6 @@
 import { Link, useParams, useLocation} from "react-router-dom";
 import { useEffect, useState } from "react";
-import {Title, Compras, Item, BtsCompra, SaldoDevedor} from "./style.js"
+import {Title, Compras, Item, BtsCompra, SaldoDevedor, MsgDetalhes} from "./style.js"
 import { detalhesComanda } from "../../services/compraService.js"
 
 function Detalhes () {
@@ -24,7 +24,7 @@ function Detalhes () {
   }, [id]);
 
   if (carregando) {
-    return <p>carregando Comanda</p>
+    return <MsgDetalhes>carregando Comanda</MsgDetalhes>
   }
 
   return (
@@ -41,7 +41,7 @@ function Detalhes () {
             
 
 
-      {compras.length === 0 ? (<p>Nenhuma compra encontrada.</p>) : (
+      {compras.length === 0 ? (<MsgDetalhes>Nenhuma compra encontrada.</MsgDetalhes>) : (
         compras.map((compra)=> (
           <Compras key={compra.id}>
             <Item>

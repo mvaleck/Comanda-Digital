@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom"; 
 
 export const Modal = styled.div `
     display: flex;
@@ -72,6 +73,7 @@ export const Content = styled.section `
 export const BtsModalClientes = styled.div  `
     display: flex;
     gap: 10px;
+    align-items: center;
     margin-top: 15px;
 
     button {
@@ -98,4 +100,9 @@ export const BtsAddCancel  = styled.div  `
     background-color: rgb(211, 243, 190);
     padding: 10px;
    }
+`;
+
+export const BtLink = styled(Link)`
+    text-decoration: none;
+   
 `;

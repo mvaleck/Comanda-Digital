@@ -42,9 +42,13 @@ export const SaldoDevedor = styled.div `
     margin-bottom: 25px;
 `;
 
+export const MsgDetalhes = styled.p `
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+`;
 
 /*
-export const Tabela = styled.div ``;
 export const Tabela = styled.div ``;
 export const Tabela = styled.div ``;
 export const Tabela = styled.div ``;
