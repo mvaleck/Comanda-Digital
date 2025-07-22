@@ -5,7 +5,7 @@ export const Modal = styled.div `
     display: flex;
     flex-direction: column;
     width: 300px;
-    background-color: rgb(248, 107, 64);
+    background-color: rgb(161, 65, 36);
     padding: 20px;
     gap: 2px;
     border-radius: 20px;
@@ -13,7 +13,8 @@ export const Modal = styled.div `
     z-index: 20;
     right: 30px;
     top: 20px;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.21);
+    color: white;
+    box-shadow: 0px 3px 15px rgba(53, 53, 53, 0.21);
 
 
     input , textarea {
@@ -45,9 +46,9 @@ export const BtAddClientes = styled.button `
 
 //modalclientes
 export const Modal2 = styled.main `
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.21);
+    box-shadow: 0px 3px 15px rgba(63, 63, 63, 0.12);
     padding: 25px;
-    background-color: rgb(236, 236, 236);
+    background-color: rgb(255, 255, 255);
     flex: 0 1 calc(33.33% - 50px); /* 3 por linha com gap */
     box-sizing: border-box;
     border-radius: 20px;
@@ -55,12 +56,13 @@ export const Modal2 = styled.main `
   
 `;
 
-export const DisplayModal = styled.div  `
+export const DisplayModal = styled.div `
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px 60px;
     justify-content: space-around;
+    color: rgb(31, 33, 56);
 
 `;
 
@@ -77,8 +79,10 @@ export const BtsModalClientes = styled.div  `
     margin-top: 15px;
 
     button {
-        padding: 10px;
-        background-color: yellow;
+        color: white;
+        padding: 12px 18px;
+        background-color: rgb(161, 65, 36);
+
     }
 `;
 
@@ -97,12 +101,14 @@ export const BtsAddCancel  = styled.div  `
     gap: 20px;
    
    button {
-    background-color: rgb(211, 243, 190);
+    color: white;
+    background-color: rgb(43, 46, 77);
     padding: 10px;
    }
 `;
 
 export const BtLink = styled(Link)`
     text-decoration: none;
+    color: rgb(161, 65, 36);
    
 `;

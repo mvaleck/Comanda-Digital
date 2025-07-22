@@ -48,7 +48,7 @@ function ModalClientes ({clientes}) {
           <Modal2 key={cliente.id}>
             <Content>
               <h1>{cliente.nome}</h1>
-              <p>Telefone {cliente.telefone}</p>
+              <p>Telefone: {cliente.telefone}</p>
               <p>Status: Ativo</p>
               <p>Saldo devedor: R$ 40,85</p>
 

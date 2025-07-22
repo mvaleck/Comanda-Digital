@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const Menu = styled.div `
-    background-color: rgb(180, 185, 255);
+    background-color: rgb(43, 46, 77);
     display: flex;
     justify-content: space-around;
     padding: 20px ;
     align-items: center;
+    color: rgb(248, 245, 240);
 
     img {
         width: 20px;
@@ -28,6 +29,7 @@ text-align: center;
         text-align: center;
         display: flex;
         gap: 25px;
+        color: rgb(31, 33, 56);
        
     }
     button {

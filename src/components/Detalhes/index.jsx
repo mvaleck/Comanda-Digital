@@ -1,6 +1,6 @@
-import { Link, useParams, useLocation, useNavigate} from "react-router-dom";
+import { useParams, useLocation, useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
-import {Title, Compras, Item, BtsCompra, SaldoDevedor, MsgDetalhes} from "./style.js"
+import {Title, BtLink, Compras, Item, BtsCompra, SaldoDevedor, MsgDetalhes} from "./style.js"
 import { detalhesComanda } from "../../services/compraService.js";
 import { deletarCliente } from "../../services/clienteService.js";
 
@@ -48,7 +48,7 @@ function Detalhes () {
   return (
     <div>
       <Title>
-        <Link to="/home"> Voltar </Link>
+        <BtLink to="/home"> Voltar </BtLink>
         <h1>Comanda de {clienteNome}</h1>
         <button onClick={() => handleDelete(id)} >Apagar cliente</button>
       </Title>
