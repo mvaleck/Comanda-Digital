@@ -102,22 +102,35 @@ export async function getNomeEstabelecimento() {
 
 }
 
-export async function deletarCliente (clienteId) {
+
+export async function deletarCliente(clienteId) {
   try {
     const auth = getAuth();
     const user = auth.currentUser;
-    
-    if (!user){
-      alert('Usuário não autenticado')
+    const userId = user.uid;
+
+    if (!user) {
+      alert('Usuário não autenticado');
       return;
     }
+    
+  
+    const clienteDocRef = doc(db, "users", userId, "clientes", clienteId);
+    const comprasDocRef = collection(db, "users", userId, "clientes", clienteId, "compras");
 
-    const clientesRef = doc(db, "users", user.uid, "clientes", clienteId);
-    await deleteDoc(clientesRef);
-    console.log("Cliente deletado com sucesso: ", clienteId);
+    // 1. Buscar todas as compras desse cliente
+    const comprasSnapshot = await getDocs(comprasDocRef);
+
+    // 2. Apagar cada compra individualmente
+    const deleteComprasPromises = comprasSnapshot.docs.map(docCompra => deleteDoc(docCompra.ref));
+    await Promise.all(deleteComprasPromises);
+
+    // 3. Agora apagar o cliente
+    await deleteDoc(clienteDocRef);
+
+    console.log("Cliente e suas compras deletados com sucesso:", clienteId);
   } catch (error) {
-    console.error("Erro ao deletar cliente", error);
+    console.error("Erro ao deletar cliente e suas compras", error);
     alert("Erro ao deletar cliente");
   }
-  
 }

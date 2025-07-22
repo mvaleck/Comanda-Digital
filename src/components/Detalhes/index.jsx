@@ -1,4 +1,4 @@
-import { Link, useParams, useLocation} from "react-router-dom";
+import { Link, useParams, useLocation, useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import {Title, Compras, Item, BtsCompra, SaldoDevedor, MsgDetalhes} from "./style.js"
 import { detalhesComanda } from "../../services/compraService.js";
@@ -9,7 +9,8 @@ function Detalhes () {
   const { id } = useParams();
   const [compras, setCompras] = useState([]);
   const [carregando, setCarregando] = useState(true);
-
+ 
+  const navigate = useNavigate();
   const location = useLocation();
   const clienteNome = location.state?.nome || "Cliente";
 
@@ -29,9 +30,13 @@ function Detalhes () {
   }
 
   const handleDelete = async (clienteId) => {
+    const confirmar = window.confirm("Tem certeza que deseja apagar esse cliente?");
+    if (!confirmar) return;
+
     try{
       await deletarCliente(clienteId);
-      console.log(clienteId);
+      navigate("/home")
+      console.log("Cliente deletado: ", clienteId);
     } catch (err) {
       console.error("Erro ao deletar cliente", err);
       console.log(clienteId);
