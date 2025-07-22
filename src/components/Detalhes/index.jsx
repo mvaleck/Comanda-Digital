@@ -58,7 +58,7 @@ function Detalhes () {
     
             <Item>
               <h1>Preço</h1>
-              <p>R$ {Number(compra.produto)}</p>
+              <p>R$ {Number(compra.preco)}</p>
             </Item>
 
             <BtsCompra>
