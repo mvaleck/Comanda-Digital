@@ -1,6 +1,7 @@
+import { getAuth } from "firebase/auth";
 import {auth, db} from "../firebase"
 import {collection, addDoc, getDocs} from "firebase/firestore"
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, deleteDoc} from "firebase/firestore";
 
 //criar clientes
 export async function criarClientes(clienteData) {
@@ -99,4 +100,24 @@ export async function getNomeEstabelecimento() {
     return null;
   }
 
+}
+
+export async function deletarCliente (clienteId) {
+  try {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    
+    if (!user){
+      alert('Usuário não autenticado')
+      return;
+    }
+
+    const clientesRef = doc(db, "users", user.uid, "clientes", clienteId);
+    await deleteDoc(clientesRef);
+    console.log("Cliente deletado com sucesso: ", clienteId);
+  } catch (error) {
+    console.error("Erro ao deletar cliente", error);
+    alert("Erro ao deletar cliente");
+  }
+  
 }
