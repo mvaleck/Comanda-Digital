@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Menu = styled.div `
     background-color: rgb(43, 46, 77);
@@ -38,4 +39,25 @@ text-align: center;
         border-radius: 20px;
         margin-right: 50px;
     }
+`;
+
+export const BtLinkSair = styled(Link) `
+    color: white;
+    text-decoration: none;
+    background-color: rgba(78, 81, 128, 0.57);
+    padding: 10px 15px;
+    border-radius: 12px;
+    transition: all 0.3s ease; /* suaviza transform e outras mudanças */
+    
+    &:hover {
+    background-color:rgb(255, 251, 236);
+    color: rgb(28, 31, 56);
+  }
+
+`;
+
+export const PerfilLogout = styled.div `
+    display: flex;
+    align-items: center;
+    gap: 50px;
 `;

@@ -1,4 +1,4 @@
-import {Menu, Main} from "./style"
+import {Menu, Main, BtLinkSair, PerfilLogout } from "./style"
 
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
@@ -24,8 +24,11 @@ function LayoutPadrao () {
       <section>
         <Menu>
           <h1>{nome}</h1>
-          <Link to="/">Sair</Link>
-          <Link to="perfil"><img src={profile} alt="" /></Link>
+          <PerfilLogout>
+            <Link to="perfil"><img src={profile} alt="" /></Link>
+            <BtLinkSair to="/">Sair</BtLinkSair>
+          </PerfilLogout>
+          
         </Menu>
       </section>            
 
