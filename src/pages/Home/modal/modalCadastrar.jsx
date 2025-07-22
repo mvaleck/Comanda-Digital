@@ -1,7 +1,8 @@
-import {Modal, BtAddClientes} from "./style"
-import close from "../../../assets/close.svg"
-import { criarClientes } from "../../../services/clienteService"
-import { useState } from "react"
+import {Modal, BtAddClientes} from "./style";
+import close from "../../../assets/close.svg";
+import { criarClientes } from "../../../services/clienteService";
+import { useState } from "react";
+
 function ModalCadastrar ({ onClose, atualizarClientes }) {
   const [nomeInput, setNomeInput] = useState("");
   const [telefoneInput, setTelefoneInput] = useState("");
@@ -45,7 +46,6 @@ function ModalCadastrar ({ onClose, atualizarClientes }) {
         onChange={(e) => setTelefoneInput(e.target.value)}
       />
 
-      <textarea placeholder="Observação"></textarea>
       
       <BtAddClientes onClick={handleSalvarCliente}>Adicionar Cliente</BtAddClientes>
     </Modal>
