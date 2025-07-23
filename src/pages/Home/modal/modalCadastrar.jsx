@@ -1,14 +1,21 @@
 import {Modal, BtAddClientes} from "./style";
 import close from "../../../assets/close.svg";
 import { criarClientes } from "../../../services/clienteService";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 function ModalCadastrar ({ onClose, atualizarClientes }) {
   const [nomeInput, setNomeInput] = useState("");
   const [telefoneInput, setTelefoneInput] = useState("");
+  const nomeInputRef = useRef(null);
+
+  useEffect(() => {
+    // 3. Foca no input assim que o modal abrir
+    if (nomeInputRef.current) {
+      nomeInputRef.current.focus();
+    }
+  }, []);
 
   const handleSalvarCliente = async () => {
-
     const novoCliente = {
       nome: nomeInput,
       telefone: telefoneInput
@@ -28,6 +35,7 @@ function ModalCadastrar ({ onClose, atualizarClientes }) {
     }
   };
 
+  
   return (
     <Modal>
       <button onClick={onClose}><img src={close} alt=""/></button>
@@ -36,6 +44,7 @@ function ModalCadastrar ({ onClose, atualizarClientes }) {
       <input
         type="text"
         value={nomeInput}
+        ref={nomeInputRef}
         onChange={(e) => setNomeInput(e.target.value)}
       />
 
