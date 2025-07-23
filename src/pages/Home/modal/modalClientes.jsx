@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {Modal2, DisplayModal, BtsAddCancel,
   BtsModalClientes, Content, BtLink, AddCompra} from "./style"
 import { adicionarCompra } from "../../../services/compraService";
@@ -10,7 +10,7 @@ function ModalClientes ({clientes}) {
   const [produtoInput, setProdutoInput] = useState("");
   const [precoInput, setPrecoInput] = useState("");
   const [observacaoInput, setObservacaoInput] = useState("");
-
+  const produtoInputRef = useRef(null);
 
   const handleOpenAddCompra = (clienteId) => {
     setClienteAtivo(clienteId);
@@ -38,6 +38,12 @@ function ModalClientes ({clientes}) {
       handleCloseAddCompra()
     }
   };
+
+  useEffect(() => {
+    if (clienteAtivo && produtoInputRef.current) {
+      produtoInputRef.current.focus();
+    }
+  }, [clienteAtivo])
 
   
   return (
@@ -67,6 +73,7 @@ function ModalClientes ({clientes}) {
                   type="text"
                   value={produtoInput}
                   onChange={(e) => setProdutoInput(e.target.value)}
+                  ref={produtoInputRef}
                 />
 
                 <h4>Preço</h4>
