@@ -60,7 +60,7 @@ export const Modal2 = styled.main `
     box-sizing: border-box;
     border-radius: 20px;
     margin-bottom: 10px;
-  
+    align-self: flex-start;  // não deixa abrir todos os models e evita eles ficarem em branco
 `;
 
 export const DisplayModal = styled.div `
