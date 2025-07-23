@@ -71,9 +71,11 @@ export const SaldoDevedor = styled.div `
 `;
 
 export const MsgDetalhes = styled.p `
+    margin-top: 20px;
     font-size: 15px;
     display: flex;
     justify-content: center;
+    color: rgb(43, 46, 77);
 `;
 export const BtLink = styled(Link)`
     text-decoration: none;
