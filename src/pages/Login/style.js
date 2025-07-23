@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { breakpoints } from "../../style/breakpoints";
-// @media (max-width: ${breakpoints.tablet}) {}
+// 
 
 export const Container = styled.div `
     display: flex;
@@ -11,6 +11,7 @@ export const Container = styled.div `
     
     @media (max-width: ${breakpoints.tablet}) {
         flex-direction: column;
+        overflow: hidden; 
         gap: 20px;
         img {
             width: 200px;
@@ -36,6 +37,13 @@ export const LoginSection = styled.section `
         font-size: 15px;
         outline: none;
     }
+
+    @media (max-width: ${breakpoints.tablet}) {
+    input, textarea, select {
+        font-size: 16px;
+      }}
+
+
   
 `;
 
