@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom"; 
 import { breakpoints } from "../../../style/breakpoints"
+
 export const Modal = styled.div `
     display: flex;
     flex-direction: column;
@@ -98,6 +99,13 @@ export const AddCompra = styled.div `
     flex-direction: column;
     gap: 5px;
     
+    @media (max-width: ${breakpoints.mobile}) {
+        input {
+            font-size: 16px;
+        }
+    }
+    
+
 `;
 
 export const BtsAddCancel  = styled.div  `
