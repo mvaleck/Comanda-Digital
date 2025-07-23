@@ -1,6 +1,6 @@
-import { getDocs } from "firebase/firestore"; 
+import { getDocs, deleteDoc } from "firebase/firestore"; 
 import {auth, db } from "../firebase"
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc } from "firebase/firestore";
 
 export async function adicionarCompra (clienteId, compraData) {
   const user = auth.currentUser;
@@ -75,5 +75,15 @@ export async function detalhesComanda (clienteId) {
     return[];
   }
 
+}
 
+//apagar somente tal compra
+export async function deletarCompra (userId, clienteId, compraId) {
+  try {
+    const comprasRef = doc(db, "users", userId, "clientes", clienteId, "compras", compraId);
+    await deleteDoc(comprasRef);
+    console.log("Compra deletada com sucesso!")
+  } catch (error){
+    console.error("Erro ao deletar compra", error);
+  }
 }

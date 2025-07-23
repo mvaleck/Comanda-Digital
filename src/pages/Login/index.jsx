@@ -20,7 +20,7 @@ function Login () {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("Usuário logado: ", user);
-        alert("Login realizado com sucesso");
+        // alert("Login realizado com sucesso");
         navigate('/home');
       })
       .catch((error) => {

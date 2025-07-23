@@ -1,8 +1,9 @@
 import { useParams, useLocation, useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import {Title, BtLink, Compras, Item, BtsCompra, SaldoDevedor, MsgDetalhes} from "./style.js"
-import { detalhesComanda } from "../../services/compraService.js";
+import { detalhesComanda, deletarCompra } from "../../services/compraService.js";
 import { deletarCliente } from "../../services/clienteService.js";
+import { getAuth } from "firebase/auth";
 
 function Detalhes () {
  
@@ -19,7 +20,6 @@ function Detalhes () {
       const dados = await detalhesComanda(id);
       setCompras(dados);
       setCarregando(false);
-      
     }
 
     carregarComanda();
@@ -43,7 +43,26 @@ function Detalhes () {
     }
   }
 
+  const handleDeleteCompra = async (compraId) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    
+    if (!user) {
+      alert("Usuário não autenticado");
+      return;
+    }
 
+    const confirmar = window.confirm("Tem certeza que deseja apagar essa compra?");
+    if (!confirmar) return;
+
+    try {
+      await deletarCompra(user.uid, id, compraId);
+      // Remover do estado local após deletar com sucesso
+      setCompras((prev) => prev.filter((compra) => compra.id !== compraId));
+    } catch (error) {
+      alert("Erro ao deletar compra: " + error.message);
+    }
+  };
 
   return (
     <div>
@@ -57,8 +76,6 @@ function Detalhes () {
         <p> saldo devedor: R$ 30,52</p>
       </SaldoDevedor>
             
-
-
       {compras.length === 0 ? (<MsgDetalhes>Nenhuma compra encontrada.</MsgDetalhes>) : (
         compras.map((compra)=> (
           <Compras key={compra.id}>
@@ -80,8 +97,8 @@ function Detalhes () {
             </Item>
 
             <BtsCompra>
-              <button>Pago?</button>
-              <button>Apagar</button>
+              <button>Pendente</button>
+              <button onClick={() => handleDeleteCompra (compra.id)}>Apagar</button>
             </BtsCompra>
 
           </Compras>
