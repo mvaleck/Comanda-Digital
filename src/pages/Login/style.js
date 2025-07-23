@@ -13,6 +13,9 @@ export const Container = styled.div `
         flex-direction: column;
         overflow: hidden; 
         gap: 20px;
+       height: 100%;
+       margin-top: 180px;
+
         img {
             width: 200px;
             
