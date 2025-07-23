@@ -31,11 +31,17 @@ const GlobalStyle = createGlobalStyle `
   display: flex;
   align-items: center;
   border-radius: 20px;
+  font-family: Arial;
 
     &:hover {
     cursor: pointer;
     }
 
+  }
+
+  a {
+    font-size: 15px;
+    font-family: arial;
   }
 
 
