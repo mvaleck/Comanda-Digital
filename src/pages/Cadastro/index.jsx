@@ -1,4 +1,4 @@
-import {Container, LoginSection} from "../Login/style"
+import {Container, LoginSection, LinkCadastre} from "../Login/style"
 import { Link, useNavigate } from "react-router-dom";
 import img from "../../assets/cadastro.png"
 import { useState } from "react";
@@ -62,7 +62,7 @@ function Cadastro () {
             name="" id="" placeholder="Senha" />
          
           <button type="button" onClick={handleCadastar}>Cadastrar</button>
-          <Link to="/">Já tem Cadastro? Faça seu Login aqui</Link>
+          <LinkCadastre to="/">Já tem Cadastro? Faça seu Login aqui</LinkCadastre>
         </LoginSection>
         <section>
           <img src={img} alt="" />   

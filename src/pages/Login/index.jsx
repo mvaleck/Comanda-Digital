@@ -1,7 +1,7 @@
 import { useState } from "react";
 import img from "../../assets/date.png"
-import {Container, LoginSection } from "./style"
-import { Link, useNavigate} from "react-router-dom"; 
+import {Container, LoginSection, LinkCadastre } from "./style"
+import { useNavigate} from "react-router-dom"; 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 
@@ -49,7 +49,7 @@ function Login () {
           placeholder="Senha" />
         
         <button type="button" onClick={handleLogin}>Entrar</button>
-        <Link to="/cadastro">ou Cadastre-se aqui </Link>
+        <LinkCadastre to="/cadastro">ou Cadastre-se aqui </LinkCadastre>
       </LoginSection>
     </Container>
   );

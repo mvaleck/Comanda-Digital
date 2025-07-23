@@ -80,7 +80,7 @@ export async function getNomeEstabelecimento() {
   }
 
   const userId = user.uid;
-  console.log("UID do usuário logado:", userId);
+  // console.log("UID do usuário logado:", userId);
 
   try {
     const docRef = doc(db, "usuarios", userId); //acessa a coleção
