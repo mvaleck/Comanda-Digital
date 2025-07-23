@@ -9,12 +9,15 @@ import LayoutPadrao from "./components/LayoutPadrao.jsx";
 import Perfil from "./components/Perfil/index.jsx"
 import Home from "./pages/Home/index.jsx";
 import Detalhes from "./components/Detalhes/index.jsx"
+import ThemeColorManager from "./components/ThemeColorManager.jsx";
 
 function App() {
   return (
     <div> 
      
       <GlobalStyle/>
+      <ThemeColorManager/>
+
       <Routes> 
 
         <Route path="/" element={<Login/>}/>
@@ -32,12 +35,7 @@ function App() {
           <Route path="detalhes/:id" element={<Detalhes/>} />
         </Route>
 
-
-
-
       </Routes>
-
-    
     
     </div>
   );
