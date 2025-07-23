@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { breakpoints } from "../style/breakpoints";
+
+// @media (max-width: ${breakpoints.tablet}) {}
 
 export const Menu = styled.div `
     background-color: rgb(43, 46, 77);
@@ -8,11 +11,15 @@ export const Menu = styled.div `
     padding: 20px ;
     align-items: center;
     color: rgb(248, 245, 240);
-
+    
     img {
         width: 20px;
     }
    
+    @media (max-width: ${breakpoints.tablet}) {
+        box-sizing: border-box;
+        width: 100%;
+    }
 `;
 
 export const Main = styled.div `
@@ -39,6 +46,19 @@ text-align: center;
         border-radius: 20px;
         margin-right: 50px;
     }
+
+    @media (max-width: ${breakpoints.tablet}) {
+        margin-bottom: 20px;
+        h1 {
+            gap: 8px;
+            font-size: 23px;
+        }
+
+        img {
+            width: 55px;
+        }
+    }
+    
 `;
 
 export const BtLinkSair = styled(Link) `

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
+import { breakpoints } from "../../style/breakpoints";
+// @media (max-width: ${breakpoints.mobile}) { }
 export const Title = styled.div `
     display: flex;
     align-items: center;
@@ -17,6 +18,19 @@ export const Title = styled.div `
         font-size: 15px;
     }
 
+    @media (max-width: ${breakpoints.mobile}) { 
+      padding: 0px 10px 0px;
+      gap: 12px;
+        h1 {
+              font-size: 25px;
+              align-items: center;
+              text-align: center;
+        }
+
+        button {
+            font-size: 12px;
+        }
+    }
     
 `;
 

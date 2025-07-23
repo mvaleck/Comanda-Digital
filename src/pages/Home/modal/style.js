@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom"; 
-
+import { breakpoints } from "../../../style/breakpoints"
 export const Modal = styled.div `
     display: flex;
     flex-direction: column;
@@ -28,6 +28,13 @@ export const Modal = styled.div `
         margin-bottom: 10px;
     }
 
+    @media (max-width: ${breakpoints.tablet}) {
+        right: 10px;
+        top: 90px;
+
+        input, select {
+        font-size: 16px;
+        }}
 `;
 
 export const BtAddClientes = styled.button `
@@ -40,7 +47,6 @@ export const BtAddClientes = styled.button `
     margin: 0 auto;
     padding: 10px;
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.09);
-
 
 `;
 
