@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import {Modal2, DisplayModal, BtsAddCancel,
   BtsModalClientes, Content, BtLink, AddCompra} from "./style"
-import { adicionarCompra } from "../../../services/compraService";
+import { adicionarCompra, calcularSaldoDevedor } from "../../../services/compraService";
 
 
 function ModalClientes ({clientes}) {
@@ -11,6 +11,7 @@ function ModalClientes ({clientes}) {
   const [precoInput, setPrecoInput] = useState("");
   const [observacaoInput, setObservacaoInput] = useState("");
   const produtoInputRef = useRef(null);
+  const [saldosDevedor, setSaldosDevedores] = useState(0);
 
   const handleOpenAddCompra = (clienteId) => {
     setClienteAtivo(clienteId);
@@ -33,11 +34,19 @@ function ModalClientes ({clientes}) {
     };
 
     const sucesso = await adicionarCompra(clienteAtivo, compraComanda);
+ 
+    const novoSaldo = await calcularSaldoDevedor(clienteAtivo);
+    setSaldosDevedores((prev) => ({
+      ...prev,
+      [clienteAtivo]: novoSaldo
+    }));
 
     if (sucesso) {
       handleCloseAddCompra()
     }
   };
+
+ 
 
   useEffect(() => {
     if (clienteAtivo && produtoInputRef.current) {
@@ -57,6 +66,24 @@ function ModalClientes ({clientes}) {
     setPrecoInput(raw);
   }
 
+  //função para mostrar saldo devedor
+  useEffect(() => {
+    async function carregarTodosSaldos() {
+      const novosSaldos = {};
+  
+      for (const cliente of clientes) {
+        const saldo = await calcularSaldoDevedor(cliente.id);
+        novosSaldos[cliente.id] = saldo;
+      }
+  
+      setSaldosDevedores(novosSaldos);
+    }
+  
+    if (clientes.length > 0) {
+      carregarTodosSaldos();
+    }
+  }, [clientes]);
+  
   
   return (
     <div>
@@ -68,7 +95,7 @@ function ModalClientes ({clientes}) {
               <h1>{cliente.nome}</h1>
               <p>Telefone: {cliente.telefone}</p>
               <p>Status: Ativo</p>
-              <p>Saldo devedor: R$ 40,85</p>
+              <p>Saldo devedor:  R$ {saldosDevedor[cliente.id]?.toFixed(2).replace('.', ',') || "0,00"}</p>
 
               <BtsModalClientes>
                 <BtLink to={`detalhes/${cliente.id}`}

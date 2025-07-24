@@ -1,4 +1,4 @@
-import { getDocs, deleteDoc, updateDoc } from "firebase/firestore"; 
+import { getDocs, deleteDoc, updateDoc, query, where } from "firebase/firestore"; 
 import {auth, db } from "../firebase"
 import { collection, addDoc, doc } from "firebase/firestore";
 
@@ -32,7 +32,8 @@ export async function adicionarCompra (clienteId, compraData) {
         preco: parseFloat(compraData.preco) / 100,  // aqui divide pra salvar em reais
         observacao: compraData.observacao || "",
         criadoEm: new Date(),
-        statusPagamento: "pendente"
+        statusPagamento: "pendente",
+        pago: false
       });
     console.log ("compra adicionada ao usuário ", userId);
     alert ("Compra adicionada");
@@ -95,7 +96,7 @@ export async function confirmarPagamento(clienteId, compraId) {
 
   if (!user) {
     alert("Usuário não autenticado");
-    return;
+    return false;
   }
 
   const userId = user.uid;
@@ -103,11 +104,54 @@ export async function confirmarPagamento(clienteId, compraId) {
   try {
     const compraRef = doc(db, "users", userId, "clientes", clienteId, "compras", compraId);
     await updateDoc(compraRef, {
-      statusPagamento: "pago"
+      statusPagamento: "pago",
+      pago: true
     });
     alert("Pagamento realizado com sucesso");
+    return true;
   } catch (error) {
     console.error("Erro ao confirmar pagamento", error);
     alert("Erro ao confirmar pagamento");
+    return false; 
   }
+}
+
+//função somar o saldo devedor
+export async function calcularSaldoDevedor(clienteId) {
+  const user = auth.currentUser;
+
+  if (!user) {
+    alert("Usuário não autenticado");
+    return 0;
+  }
+
+  if (!clienteId) {
+    alert("Cliente não informado");
+    return 0;
+  }
+
+  const userId = user.uid;
+  const comprasRef = collection(db, "users", userId, "clientes", clienteId, "compras")
+  
+  //filtrar somente compras pendentes
+  const q = query(comprasRef, where("pago", "==", false));
+
+  try {
+    const querySnapshot = await getDocs(q);
+    let saldo = 0;
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      saldo += Number(data.preco) || 0;
+    })
+
+    return saldo;
+
+  } catch (error) {
+    console.error("Erro ao calcular saldo devedor", error);
+    alert("Erro ao calcular saldo devedor");
+    return 0; 
+  }
+
+
 }
