@@ -1,7 +1,8 @@
 import { useParams, useLocation, useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
+import confirm from "../../assets/confirm.svg"
 import {Title, BtPending, BtLink, BtApagarCompra, Compras, Item, BtsCompra, Obs, ContainerHorizontal, SaldoDevedor, MsgDetalhes} from "./style.js"
-import { detalhesComanda, deletarCompra } from "../../services/compraService.js";
+import { detalhesComanda, deletarCompra, confirmarPagamento } from "../../services/compraService.js";
 import { deletarCliente } from "../../services/clienteService.js";
 import { getAuth } from "firebase/auth";
 
@@ -64,6 +65,15 @@ function Detalhes () {
     }
   };
 
+  //confirmar pagamento e atualizar lista após
+  async function handleConfirmarPagamento(clienteId, compraId) {
+    await confirmarPagamento(clienteId, compraId);
+    const novasCompras = await detalhesComanda(clienteId);
+    setCompras(novasCompras);
+  }
+  
+
+
   return (
     <div>
       <Title>
@@ -100,7 +110,16 @@ function Detalhes () {
               </Item>
 
               <BtsCompra>
-                <BtPending>Confirmar pagamento</BtPending>
+                {compra.statusPagamento === "pago" ? (
+                  <span>
+                    <img src={confirm} alt="" />
+                    Pago
+                  </span>
+                ) : (
+                  <BtPending onClick={() => handleConfirmarPagamento(id, compra.id)}>
+                  Confirmar pagamento
+                  </BtPending>
+                )}
                 <BtApagarCompra onClick={() => handleDeleteCompra (compra.id)}>Apagar</BtApagarCompra>
               </BtsCompra>
             </ContainerHorizontal>

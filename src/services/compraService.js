@@ -1,4 +1,4 @@
-import { getDocs, deleteDoc } from "firebase/firestore"; 
+import { getDocs, deleteDoc, updateDoc } from "firebase/firestore"; 
 import {auth, db } from "../firebase"
 import { collection, addDoc, doc } from "firebase/firestore";
 
@@ -32,6 +32,7 @@ export async function adicionarCompra (clienteId, compraData) {
         preco: parseFloat(compraData.preco),
         observacao: compraData.observacao || "",
         criadoEm: new Date(),
+        statusPagamento: "pendente"
       });
     console.log ("compra adicionada ao usuário ", userId);
     alert ("Compra adicionada");
@@ -85,5 +86,28 @@ export async function deletarCompra (userId, clienteId, compraId) {
     console.log("Compra deletada com sucesso!")
   } catch (error){
     console.error("Erro ao deletar compra", error);
+  }
+}
+
+//confirmar pagamento de compra/atualizar status de pagamento
+export async function confirmarPagamento(clienteId, compraId) {
+  const user = auth.currentUser;
+
+  if (!user) {
+    alert("Usuário não autenticado");
+    return;
+  }
+
+  const userId = user.uid;
+
+  try {
+    const compraRef = doc(db, "users", userId, "clientes", clienteId, "compras", compraId);
+    await updateDoc(compraRef, {
+      statusPagamento: "pago"
+    });
+    alert("Pagamento realizado com sucesso");
+  } catch (error) {
+    console.error("Erro ao confirmar pagamento", error);
+    alert("Erro ao confirmar pagamento");
   }
 }

@@ -66,6 +66,19 @@ export const Item = styled.div `
 export const BtsCompra = styled.div `
     display: flex;
     gap: 30px;
+
+    img {
+        width: 20px;
+    }
+
+    span {
+        color: #a14124;
+        display: flex;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        gap: 5px;
+        font-size: 15px;
+    }
     
     @media (max-width: ${breakpoints.mobile}) {
         justify-content: space-between;
@@ -153,6 +166,8 @@ export const BtPending = styled.button `
 
 export const BtApagarCompra = styled.button `
     color: rgb(161, 65, 36);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
 
 `;
 
