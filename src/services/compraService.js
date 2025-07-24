@@ -29,7 +29,7 @@ export async function adicionarCompra (clienteId, compraData) {
     await addDoc(collection(db, "users", userId, "clientes", clienteId, "compras"), 
       {
         produto: compraData.produto,
-        preco: parseFloat(compraData.preco),
+        preco: parseFloat(compraData.preco) / 100,  // aqui divide pra salvar em reais
         observacao: compraData.observacao || "",
         criadoEm: new Date(),
         statusPagamento: "pendente"
