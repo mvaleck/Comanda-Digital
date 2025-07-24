@@ -1,19 +1,68 @@
-import {Container, LoginSection} from "../Login/style"
-import { Link } from "react-router-dom";
+import {Container, LoginSection, LinkCadastre} from "../Login/style"
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../assets/cadastro.png"
+import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { db } from "../../firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 function Cadastro () {
+
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const navigate = useNavigate();
+
+  const handleCadastar = () => {
+    if (!nome || !email || !senha) {
+      alert("Preencha todos os campos!"); 
+      return;
+    } 
+    createUserWithEmailAndPassword(auth, email, senha)
+      .then(async (userCredential) => {
+        const user = userCredential.user;
+
+        // Salvando dados do usuário no Firestore
+        await setDoc (doc(db, "usuarios", user.uid), {
+          nome: nome,
+          email: user.email,
+          criadoEm: new Date()
+        });
+
+        console.log('Uauário Cadastrado.', user);
+        alert (`Bem vindo(a), ${nome}.. Cadastro realizado com sucesso`);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error('Erro no cadastro', error);
+        alert("Erro ao cadastrar: " + error.message);
+      });
+  };
+
   return (
     <div>
       <Container>
                     
         <LoginSection>
           <h1>Cadastre-se</h1>
-          <input type="text" placeholder="Nome do Estabelecimento"/>
-          <input type="email" name="" id=""placeholder="E-mail" />
-          <input type="password" name="" id="" placeholder="Senha" />
-          <button type="button">Cadastrar</button>
-          <Link to="/">Já tem Cadastro? Faça seu Login aqui</Link>
+          <input type="text"
+            value={nome}
+            onChange={(e)=> setNome(e.target.value)}
+            placeholder="Nome do Estabelecimento"/>
+
+          <input type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            name="" id=""placeholder="E-mail" />
+         
+          <input type="password" 
+            value={senha}
+            onChange={(e)=> setSenha(e.target.value)}
+            name="" id="" placeholder="Senha" />
+         
+          <button type="button" onClick={handleCadastar}>Cadastrar</button>
+          <LinkCadastre to="/">Já tem Cadastro? Faça seu Login aqui</LinkCadastre>
         </LoginSection>
         <section>
           <img src={img} alt="" />   
