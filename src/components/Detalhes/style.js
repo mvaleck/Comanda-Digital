@@ -88,6 +88,12 @@ export const SaldoDevedor = styled.div `
         background-color: rgba(31, 33, 56, 0.12);
         padding: 10px 20px;
         box-shadow: 0px 1px 2px rgba(2, 17, 29, 0.3);
+        transition: all 0.3s ease; /* suaviza transform e outras mudanças */
+    
+        &:hover {
+        background-color:rgb(31, 33, 56);
+        color: white;
+    }
 
     }
 `;
@@ -121,6 +127,9 @@ export const Obs = styled.div `
     margin-top: 10px;
     display: flex;
     gap: 5px;
+    color: rgb(99, 40, 22);
+    font-size: 14px;
+    
     
     span {
         font-weight: bold;
@@ -133,6 +142,12 @@ export const BtPending = styled.button `
         background-color: rgba(31, 33, 56, 0.12);
         padding: 8px 15px;
         box-shadow: 0px 1px 3px rgba(2, 17, 29, 0.3);
+        transition: all 0.3s ease; /* suaviza transform e outras mudanças */
+    
+    &:hover {
+    background-color: rgb(161, 65, 36);
+    color: white;
+}
 
 `;
 
