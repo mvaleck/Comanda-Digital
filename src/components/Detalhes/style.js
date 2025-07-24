@@ -131,6 +131,13 @@ export const BtLink = styled(Link)`
 export const ContainerHorizontal = styled.div `
 display: flex;
 justify-content: space-between;
+h1 {
+    font-size: 17px;
+}
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
 @media (max-width: ${breakpoints.mobile}) {
     display: block;
  }
@@ -143,10 +150,14 @@ export const Obs = styled.div `
     color: rgb(99, 40, 22);
     font-size: 14px;
     
+    p {
+        font-family: Arial, Helvetica, sans-serif
+    }
     
     span {
         font-weight: bold;
         color: rgb(161, 65, 36);
+        font-family: 'Times New Roman', Times, serif;
     }
 `;
 

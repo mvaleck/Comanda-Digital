@@ -77,6 +77,16 @@ export const Content = styled.section `
     display: flex;
     flex-direction: column;
     gap: 5px;
+
+    h1 {
+        font-size: 25px;
+        margin-bottom: 2px;
+    }
+
+    p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+    }
 `;
 
 export const BtsModalClientes = styled.div  `
