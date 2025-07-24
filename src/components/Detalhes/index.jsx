@@ -74,6 +74,7 @@ function Detalhes () {
 
       <SaldoDevedor>
         <p> saldo devedor: R$ 30,52</p>
+        <button>Limpar Comanda</button>
       </SaldoDevedor>
             
       {compras.length === 0 ? (<MsgDetalhes>Nenhuma compra encontrada.</MsgDetalhes>) : (

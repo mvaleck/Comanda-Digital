@@ -76,10 +76,20 @@ export const BtsCompra = styled.div `
 `;
 export const SaldoDevedor = styled.div `
     display: flex;
+    gap: 15px;
+    flex-direction: column;
     align-items: center;
     text-align: center;
     justify-content: center;
-    margin-bottom: 25px;
+    margin-bottom: 50px;
+
+    button {
+        color: rgb(31, 33, 56);
+        background-color: rgba(31, 33, 56, 0.12);
+        padding: 10px 20px;
+        box-shadow: 0px 1px 2px rgba(2, 17, 29, 0.3);
+
+    }
 `;
 
 export const MsgDetalhes = styled.p `
@@ -119,10 +129,11 @@ export const Obs = styled.div `
 `;
 
 export const BtPending = styled.button `
-    background-color: rgba(151, 151, 151, 0.57);
-    box-shadow: 0px 3px 3px rgba(2, 17, 29, 0.3);
-    color: white;
-    padding: 5px 12px;
+     color: rgb(31, 33, 56);
+        background-color: rgba(31, 33, 56, 0.12);
+        padding: 8px 15px;
+        box-shadow: 0px 1px 3px rgba(2, 17, 29, 0.3);
+
 `;
 
 export const BtApagarCompra = styled.button `
