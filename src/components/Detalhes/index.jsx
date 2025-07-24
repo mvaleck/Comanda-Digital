@@ -1,6 +1,6 @@
 import { useParams, useLocation, useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
-import {Title, BtLink, Compras, Item, BtsCompra, Obs, ContainerHorizontal, SaldoDevedor, MsgDetalhes} from "./style.js"
+import {Title, BtPending, BtLink, BtApagarCompra, Compras, Item, BtsCompra, Obs, ContainerHorizontal, SaldoDevedor, MsgDetalhes} from "./style.js"
 import { detalhesComanda, deletarCompra } from "../../services/compraService.js";
 import { deletarCliente } from "../../services/clienteService.js";
 import { getAuth } from "firebase/auth";
@@ -99,8 +99,8 @@ function Detalhes () {
               </Item>
 
               <BtsCompra>
-                <button>Pendente</button>
-                <button onClick={() => handleDeleteCompra (compra.id)}>Apagar</button>
+                <BtPending>Confirmar pagamento</BtPending>
+                <BtApagarCompra onClick={() => handleDeleteCompra (compra.id)}>Apagar</BtApagarCompra>
               </BtsCompra>
             </ContainerHorizontal>
            

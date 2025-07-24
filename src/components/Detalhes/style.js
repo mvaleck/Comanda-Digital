@@ -117,10 +117,24 @@ export const Obs = styled.div `
         color: rgb(161, 65, 36);
     }
 `;
+
+export const BtPending = styled.button `
+    background-color: rgba(151, 151, 151, 0.57);
+    box-shadow: 0px 3px 3px rgba(2, 17, 29, 0.3);
+    color: white;
+    padding: 5px 12px;
+`;
+
+export const BtApagarCompra = styled.button `
+    color: rgb(161, 65, 36);
+
+`;
+
 /*
 
 
-export const Tabela = styled.div ``;
+
+export const BtApagarCompra = styled.button ``;
 export const Tabela = styled.div ``;
 
 */
