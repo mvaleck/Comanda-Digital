@@ -45,6 +45,18 @@ function ModalClientes ({clientes}) {
     }
   }, [clienteAtivo])
 
+  // Função para formatar os centavos como reais
+  function formatarPreco(valor) {
+    const numero = Number(valor) / 100;
+    return numero.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  // Função para tratar o input
+  function handlePrecoChange(e) {
+    const raw = e.target.value.replace(/\D/g, ''); // Remove tudo que não é número
+    setPrecoInput(raw);
+  }
+
   
   return (
     <div>
@@ -78,10 +90,10 @@ function ModalClientes ({clientes}) {
 
                 <h4>Preço</h4>
                 <input
-                  type="number"
-                  placeholder="R$"
-                  value={precoInput}
-                  onChange={(e) => setPrecoInput(e.target.value)}
+                  type="text"
+                  placeholder="R$ 00,00"
+                  value={precoInput ? formatarPreco(precoInput) : ""}
+                  onChange={handlePrecoChange}
                 />
 
                 <h4>Obs:</h4>

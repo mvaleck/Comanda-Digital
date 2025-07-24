@@ -1,6 +1,6 @@
 import { useParams, useLocation, useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
-import {Title, BtLink, Compras, Item, BtsCompra, SaldoDevedor, MsgDetalhes} from "./style.js"
+import {Title, BtLink, Compras, Item, BtsCompra, Obs, ContainerHorizontal, SaldoDevedor, MsgDetalhes} from "./style.js"
 import { detalhesComanda, deletarCompra } from "../../services/compraService.js";
 import { deletarCliente } from "../../services/clienteService.js";
 import { getAuth } from "firebase/auth";
@@ -79,31 +79,37 @@ function Detalhes () {
       {compras.length === 0 ? (<MsgDetalhes>Nenhuma compra encontrada.</MsgDetalhes>) : (
         compras.map((compra)=> (
           <Compras key={compra.id}>
-            <Item>
-              <h1>Data</h1>
-              <p>
-                {new Date(compra.criadoEm?.seconds *1000).toLocaleDateString("pt-BR")}
-              </p>
-            </Item>
 
-            <Item> 
-              <h1>Produto: </h1> 
-              <p>{compra.produto}</p>  
-            </Item>
+            <ContainerHorizontal>
+              <Item>
+                <h1>Data:</h1>
+                <p>
+                  {new Date(compra.criadoEm?.seconds *1000).toLocaleDateString("pt-BR")}
+                </p>
+              </Item>
+
+              <Item> 
+                <h1>Produto: </h1> 
+                <p>{compra.produto}</p>  
+              </Item>
     
-            <Item>
-              <h1>Preço</h1>
-              <p>R$ {Number(compra.preco)}</p>
-            </Item>
+              <Item>
+                <h1>Preço:</h1>
+                <p>R$ {Number(compra.preco)}</p>
+              </Item>
 
-            <BtsCompra>
-              <button>Pendente</button>
-              <button onClick={() => handleDeleteCompra (compra.id)}>Apagar</button>
-            </BtsCompra>
-
+              <BtsCompra>
+                <button>Pendente</button>
+                <button onClick={() => handleDeleteCompra (compra.id)}>Apagar</button>
+              </BtsCompra>
+            </ContainerHorizontal>
+           
+            <Obs>
+              <p> <span>Observação: </span> {compra.observacao}</p>
+            </Obs>
           </Compras>
-        ))
-      )}
+         
+        )))}
      
 
     </div>

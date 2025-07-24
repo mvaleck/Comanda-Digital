@@ -37,6 +37,7 @@ export const Title = styled.div `
 
 export const Compras = styled.div `
 display:flex;
+flex-direction: column;
 justify-content: space-between;
 border-bottom: 1px solid #ccc;
 width: 70%;
@@ -55,11 +56,22 @@ h1 {
 export const Item = styled.div `
     display: flex;
     flex-direction: column;
+    
+    @media (max-width: ${breakpoints.mobile}) {
+        flex-direction: row;
+        gap: 10px;
+     }
 `;
 
 export const BtsCompra = styled.div `
     display: flex;
     gap: 30px;
+    
+    @media (max-width: ${breakpoints.mobile}) {
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 10px;
+     }
     
 `;
 export const SaldoDevedor = styled.div `
@@ -86,9 +98,28 @@ export const BtLink = styled(Link)`
     font-size: 15px;
    
 `;
+
+export const ContainerHorizontal = styled.div `
+display: flex;
+justify-content: space-between;
+@media (max-width: ${breakpoints.mobile}) {
+    display: block;
+ }
+`;
+
+export const Obs = styled.div `
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+    
+    span {
+        font-weight: bold;
+        color: rgb(161, 65, 36);
+    }
+`;
 /*
-export const Tabela = styled.div ``;
-export const Tabela = styled.div ``;
+
+
 export const Tabela = styled.div ``;
 export const Tabela = styled.div ``;
 
