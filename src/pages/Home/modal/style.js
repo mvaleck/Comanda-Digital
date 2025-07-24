@@ -61,6 +61,11 @@ export const Modal2 = styled.main `
     border-radius: 20px;
     margin-bottom: 10px;
     align-self: flex-start;  // não deixa abrir todos os models e evita eles ficarem em branco
+
+    @media (max-width: ${breakpoints.mobile}) {
+    flex: none;
+    margin: 0 auto; //centraliza os cards no meio proporcionalmente
+    }
 `;
 
 export const DisplayModal = styled.div `
@@ -70,6 +75,11 @@ export const DisplayModal = styled.div `
     padding: 20px 60px;
     justify-content: space-around;
     color: rgb(31, 33, 56);
+
+    @media (max-width: ${breakpoints.mobile}) {
+        flex-direction: column;
+        gap: 30px;
+    }
 
 `;
 
