@@ -2,7 +2,7 @@ import { useParams, useLocation, useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import confirm from "../../assets/confirm.svg"
 import {Title, BtPending, BtLink, BtApagarCompra, Compras, Item, BtsCompra, Obs, ContainerHorizontal, SaldoDevedor, MsgDetalhes} from "./style.js"
-import { detalhesComanda, deletarCompra, confirmarPagamento } from "../../services/compraService.js";
+import { detalhesComanda, deletarCompra, confirmarPagamento, calcularSaldoDevedor } from "../../services/compraService.js";
 import { deletarCliente } from "../../services/clienteService.js";
 import { getAuth } from "firebase/auth";
 
@@ -11,19 +11,28 @@ function Detalhes () {
   const { id } = useParams();
   const [compras, setCompras] = useState([]);
   const [carregando, setCarregando] = useState(true);
- 
+  const [saldoDevedor, setSaldoDevedor] = useState(0);
+
   const navigate = useNavigate();
   const location = useLocation();
   const clienteNome = location.state?.nome || "Cliente";
 
   useEffect(() => {
-    async function carregarComanda () {
-      const dados = await detalhesComanda(id);
-      setCompras(dados);
-      setCarregando(false);
+    async function carregarComandaECalcularSaldo() {
+      try {
+        const dados = await detalhesComanda(id);
+        setCompras(dados);
+  
+        const saldo = await calcularSaldoDevedor(id);
+        setSaldoDevedor(saldo);
+      } catch (error) {
+        console.error("Erro ao carregar comanda ou saldo devedor:", error);
+      } finally {
+        setCarregando(false);
+      }
     }
-
-    carregarComanda();
+  
+    carregarComandaECalcularSaldo();
   }, [id]);
 
   if (carregando) {
@@ -60,6 +69,8 @@ function Detalhes () {
       await deletarCompra(user.uid, id, compraId);
       // Remover do estado local após deletar com sucesso
       setCompras((prev) => prev.filter((compra) => compra.id !== compraId));
+      const novoSaldo = await calcularSaldoDevedor(id);
+      setSaldoDevedor(novoSaldo);
     } catch (error) {
       alert("Erro ao deletar compra: " + error.message);
     }
@@ -70,8 +81,10 @@ function Detalhes () {
     await confirmarPagamento(clienteId, compraId);
     const novasCompras = await detalhesComanda(clienteId);
     setCompras(novasCompras);
+
+    const saldoAtualizado = await calcularSaldoDevedor(clienteId);
+    setSaldoDevedor(saldoAtualizado);
   }
-  
 
 
   return (
@@ -83,7 +96,7 @@ function Detalhes () {
       </Title>
 
       <SaldoDevedor>
-        <p> saldo devedor: R$ 30,52</p>
+        <p>Saldo devedor: R$ {saldoDevedor.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
         <button>Limpar Comanda</button>
       </SaldoDevedor>
             
@@ -106,7 +119,7 @@ function Detalhes () {
     
               <Item>
                 <h1>Preço:</h1>
-                <p>R$ {Number(compra.preco)}</p>
+                <p>R$ {Number(compra.preco).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
               </Item>
 
               <BtsCompra>

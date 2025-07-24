@@ -95,7 +95,7 @@ function ModalClientes ({clientes}) {
               <h1>{cliente.nome}</h1>
               <p>Telefone: {cliente.telefone}</p>
               <p>Status: Ativo</p>
-              <p>Saldo devedor:  R$ {saldosDevedor[cliente.id]?.toFixed(2).replace('.', ',') || "0,00"}</p>
+              <p>Saldo devedor:  R$ {saldosDevedor[cliente.id]?.toFixed(2).replace('.', ',') || ""}</p>
 
               <BtsModalClientes>
                 <BtLink to={`detalhes/${cliente.id}`}
