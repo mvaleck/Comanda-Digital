@@ -5,6 +5,7 @@ import {Title, BtPending, BtLink, BtApagarCompra, Compras, Item, BtsCompra, Obs,
 import { detalhesComanda, deletarCompra, confirmarPagamento, calcularSaldoDevedor, limparComanda } from "../../services/compraService.js";
 import { deletarCliente } from "../../services/clienteService.js";
 import { getAuth } from "firebase/auth";
+import back from "../../assets/back.svg";
 
 function Detalhes () {
  
@@ -103,7 +104,7 @@ function Detalhes () {
   return (
     <div>
       <Title>
-        <BtLink to="/home"> Voltar </BtLink>
+        <BtLink to="/home"> <img src={back} alt="" /> </BtLink>
         <h1>Comanda de {clienteNome}</h1>
         <button onClick={() => handleDelete(id)} >Apagar cliente</button>
       </Title>

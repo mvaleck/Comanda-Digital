@@ -119,13 +119,10 @@ export const MsgDetalhes = styled.p `
     color: rgb(43, 46, 77);
 `;
 export const BtLink = styled(Link)`
-    text-decoration: none;
-    background-color: rgb(43, 46, 77);
-    color: white;
+   img {
+    width: 30px;
     padding: 10px 15px;
-    border-radius: 12px;
-    font-size: 15px;
-   
+   } 
 `;
 
 export const ContainerHorizontal = styled.div `
