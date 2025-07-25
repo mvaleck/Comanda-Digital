@@ -89,7 +89,7 @@ function Detalhes () {
 
   ///limpar comanda
   async function handleLimparComanda(clienteId) {
-    const confirmar = window.confirm("Tem certeza que deseja limpar a comanda desse cliente?")
+    const confirmar = window.confirm("Tem certeza que deseja limpar a comanda desse cliente? Essa ação apagará todas as compras pagas e/ou pendentes.")
     if (!confirmar) return;
     try {
       await limparComanda(clienteId);

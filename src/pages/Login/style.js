@@ -39,6 +39,10 @@ export const LoginSection = styled.section `
         width: 80px;
         font-size: 15px;
         outline: none;
+    
+    &:hover {
+    color:  rgb(161, 65, 36);
+  }
     }
 
     @media (max-width: ${breakpoints.tablet}) {
@@ -55,4 +59,8 @@ export const LinkCadastre = styled(Link) `
     color: rgb(128, 47, 27);
     margin-top: 2px;
     outline: none;
+
+    &:hover {
+        color:rgb(31, 33, 56);
+    }
 `;

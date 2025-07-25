@@ -62,7 +62,7 @@ export const Modal2 = styled.main `
     margin-bottom: 10px;
     align-self: flex-start;  // não deixa abrir todos os models e evita eles ficarem em branco
 
-    @media (max-width: ${breakpoints.mobile}) {
+    @media (max-width: ${breakpoints.tablet}) {
     flex: none;
     margin: 0 auto; //centraliza os cards no meio proporcionalmente
     }
@@ -76,7 +76,7 @@ export const DisplayModal = styled.div `
     justify-content: space-around;
     color: rgb(31, 33, 56);
 
-    @media (max-width: ${breakpoints.mobile}) {
+    @media (max-width: ${breakpoints.tablet}) {
         flex-direction: column;
         gap: 30px;
     }
@@ -119,7 +119,7 @@ export const AddCompra = styled.div `
     flex-direction: column;
     gap: 5px;
     
-    @media (max-width: ${breakpoints.mobile}) {
+    @media (max-width: ${breakpoints.tablet}) {
         input {
             font-size: 16px;
         }

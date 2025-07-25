@@ -13,7 +13,7 @@ function Login () {
 
   const handleLogin = () => {
     if (!email || !senha) {
-      alert("Preencha todos os campos para contiuar..")
+      alert("Preencha todos os campos para continuar..")
       return;
     }
     signInWithEmailAndPassword(auth, email, senha)
