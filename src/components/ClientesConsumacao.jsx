@@ -1,4 +1,4 @@
-import img from "../assets/mene.png"
+import img from "../assets/woman.png"
 import {Main} from "./style"
 
 function ClientesConsumacao () {
