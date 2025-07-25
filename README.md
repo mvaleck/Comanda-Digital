@@ -1,12 +1,58 @@
-# React + Vite
+# 🧾 Comanda Digital
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um sistema simples e eficiente de controle de **clientes**, **pedidos** e **histórico de compras**, pensado para pequenos comércios como **bares**, **botecos** e **mercadinhos**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tecnologias Usadas
 
-## Expanding the ESLint configuration
+- ⚛️ React (Vite)
+- 🔥 Firebase
+  - Authentication
+  - Firestore
+  - Hosting
+- 💅 Styled-components
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Funcionalidades
+
+- 📋 **Cadastro de Clientes**
+  - Nome, telefone e endereço
+
+- 🍻 **Adição de Pedidos**
+  - Produtos, data e valor
+  - Associado a cada cliente
+
+- 🕓 **Visualização dos Detalhes**
+  - Lista de compras do cliente
+
+- 🧹 **Excluir Cliente**
+  - Remoção completa do cliente e suas compras
+- 🧹 **Limpar comanda**
+   - limpa todas as compras (pagas ou pendentes) da comanda
+
+- 🔐 **Login com Firebase Auth**
+  - Proteção por autenticação
+
+---
+
+## 💡 Objetivo
+
+Este projeto foi desenvolvido com o objetivo de **praticar o uso do React integrado ao Firebase**, ao mesmo tempo em que **resolve um problema real**:  
+> Ajudar pequenos comércios a terem mais controle sobre seus pedidos e clientes, **sem depender de papel e caneta**.
+
+---
+
+## 📱 Responsividade
+
+A aplicação funciona tanto em **computadores** quanto em **dispositivos móveis**, sendo ideal para uso direto no balcão.
+
+---
+
+## 🔧 Como Rodar o Projeto Localmente
+
+1. **Clone o repositório**:
+
+```bash
+git clone https://github.com/mvaleck/Comanda-Digital.git
