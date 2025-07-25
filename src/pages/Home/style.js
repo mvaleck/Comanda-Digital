@@ -9,7 +9,7 @@ export const BtCadastrar = styled.button `
     top: 120px;
     right: 50px;
 
-    @media (max-width: ${breakpoints.mobile}) {
+    @media (max-width: ${breakpoints.tablet}) {
      top: 160px
     }
 `;

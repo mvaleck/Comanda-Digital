@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { breakpoints } from "../../style/breakpoints";
-// @media (max-width: ${breakpoints.mobile}) { }
+// @media (max-width: ${breakpoints.tablet}) { }
 export const Title = styled.div `
     display: flex;
     align-items: center;
@@ -18,7 +18,7 @@ export const Title = styled.div `
         font-size: 15px;
     }
 
-    @media (max-width: ${breakpoints.mobile}) { 
+    @media (max-width: ${breakpoints.tablet}) { 
       padding: 0px 10px 0px;
       gap: 12px;
         h1 {
@@ -57,7 +57,7 @@ export const Item = styled.div `
     display: flex;
     flex-direction: column;
     
-    @media (max-width: ${breakpoints.mobile}) {
+    @media (max-width: ${breakpoints.tablet}) {
         flex-direction: row;
         gap: 10px;
      }
@@ -80,7 +80,7 @@ export const BtsCompra = styled.div `
         font-size: 15px;
     }
     
-    @media (max-width: ${breakpoints.mobile}) {
+    @media (max-width: ${breakpoints.tablet}) {
         justify-content: space-between;
         margin-top: 10px;
         margin-bottom: 10px;
@@ -135,7 +135,7 @@ p {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
 }
-@media (max-width: ${breakpoints.mobile}) {
+@media (max-width: ${breakpoints.tablet}) {
     display: block;
  }
 `;
