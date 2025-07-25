@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import profile from "../../assets/profile-user.svg";
-import { Page, Profile } from "./style";
+import { Page, Profile, Vector} from "./style";
 import { getNomeEstabelecimento } from "../../services/clienteService";
 import { useEffect, useState } from "react";
+import back from "../../assets/back.svg";
 
 function Perfil() {
   const [nome, setNome] = useState("");
@@ -18,7 +19,7 @@ function Perfil() {
 
   return (
     <Page>
-      <Link to="/home">Voltar</Link>
+      <Link to="/home"><Vector src={back} alt="" /></Link>
 
       <Profile>
         <h1>Perfil</h1>
@@ -28,9 +29,7 @@ function Perfil() {
         ) : (
           <p>Carregando nome...</p>
         )}
-        <p>Telefone: </p>
-        <p>E-mail: </p>
-        <button>Editar Perfil</button>
+        
       </Profile>
     </Page>
   );
