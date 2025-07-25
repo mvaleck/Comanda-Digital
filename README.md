@@ -18,17 +18,18 @@ Um sistema simples e eficiente de controle de **clientes**, **pedidos** e **hist
 ## 🚀 Funcionalidades
 
 - 📋 **Cadastro de Clientes**
-  - Nome, telefone e endereço
+  - Nome e telefone
 
 - 🍻 **Adição de Pedidos**
   - Produtos, data e valor
   - Associado a cada cliente
 
-- 🕓 **Visualização dos Detalhes**
+- 🕓 **Visualização Detalhes**
   - Lista de compras do cliente
 
 - 🧹 **Excluir Cliente**
   - Remoção completa do cliente e suas compras
+
 - 🧹 **Limpar comanda**
    - limpa todas as compras (pagas ou pendentes) da comanda
 
