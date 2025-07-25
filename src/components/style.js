@@ -48,14 +48,17 @@ text-align: center;
     }
 
     @media (max-width: ${breakpoints.tablet}) {
-        margin-bottom: 20px;
+       padding: 0;
+       flex-direction: column;
+       margin-bottom: 15px;
         h1 {
             gap: 8px;
             font-size: 23px;
         }
 
         img {
-            width: 55px;
+            width: 75px;
+            margin-right: 10px;
         }
     }
     

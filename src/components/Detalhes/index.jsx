@@ -2,9 +2,10 @@ import { useParams, useLocation, useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import confirm from "../../assets/confirm.svg"
 import {Title, BtPending, BtLink, BtApagarCompra, Compras, Item, BtsCompra, Obs, ContainerHorizontal, SaldoDevedor, MsgDetalhes} from "./style.js"
-import { detalhesComanda, deletarCompra, confirmarPagamento, calcularSaldoDevedor } from "../../services/compraService.js";
+import { detalhesComanda, deletarCompra, confirmarPagamento, calcularSaldoDevedor, limparComanda } from "../../services/compraService.js";
 import { deletarCliente } from "../../services/clienteService.js";
 import { getAuth } from "firebase/auth";
+import back from "../../assets/back.svg";
 
 function Detalhes () {
  
@@ -86,18 +87,31 @@ function Detalhes () {
     setSaldoDevedor(saldoAtualizado);
   }
 
+  ///limpar comanda
+  async function handleLimparComanda(clienteId) {
+    const confirmar = window.confirm("Tem certeza que deseja limpar a comanda desse cliente?")
+    if (!confirmar) return;
+    try {
+      await limparComanda(clienteId);
+      setCompras([]);
+      setSaldoDevedor(0);
+      console.log("Comanda limpa com sucesso!")
+    }  catch (error) {
+      alert("Erro ao limpar comanda: " + error.message);
+    }
+  }
 
   return (
     <div>
       <Title>
-        <BtLink to="/home"> Voltar </BtLink>
+        <BtLink to="/home"> <img src={back} alt="" /> </BtLink>
         <h1>Comanda de {clienteNome}</h1>
         <button onClick={() => handleDelete(id)} >Apagar cliente</button>
       </Title>
 
       <SaldoDevedor>
         <p>Saldo devedor: R$ {saldoDevedor.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
-        <button>Limpar Comanda</button>
+        <button onClick={() => handleLimparComanda(id)}>Limpar Comanda</button>
       </SaldoDevedor>
             
       {compras.length === 0 ? (<MsgDetalhes>Nenhuma compra encontrada.</MsgDetalhes>) : (
