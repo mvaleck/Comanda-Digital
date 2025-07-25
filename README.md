@@ -1,6 +1,6 @@
 # 🧾 Comanda Digital
 
-Um sistema simples e eficiente de controle de **clientes**, **pedidos** e **histórico de compras**, pensado para pequenos comércios como **bares**, **botecos** e **mercadinhos**.
+Um sistema simples e eficiente de controle de **clientes**, **pedidos** e **comanda**, pensado para pequenos comércios como **bares**, **botecos** e **mercadinhos**.
 
 ---
 
