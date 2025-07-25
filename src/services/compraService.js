@@ -1,6 +1,7 @@
 import { getDocs, deleteDoc, updateDoc, query, where } from "firebase/firestore"; 
 import {auth, db } from "../firebase"
 import { collection, addDoc, doc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 export async function adicionarCompra (clienteId, compraData) {
   const user = auth.currentUser;
@@ -154,4 +155,31 @@ export async function calcularSaldoDevedor(clienteId) {
   }
 
 
+}
+
+//limpar comanda de cliente
+export async function  limparComanda (clienteId) {
+  const auth = getAuth();
+  const user = auth.currentUser;
+   
+  if (!user) {
+    alert('Usuário não autenticado');
+    return;
+  }
+
+  const userId = user.uid;
+  
+  try {
+    const comandaRef = (collection(db, "users", userId, "clientes", clienteId, "compras"));
+    // 1. Buscar todas as compras desse cliente
+    const comandaSnapshot = await getDocs(comandaRef);
+    // 2. Apagar cada compra individualmente
+    const deleteComandaPromisses = comandaSnapshot.docs.map(docComanda => deleteDoc(docComanda.ref));
+    await Promise.all(deleteComandaPromisses);
+    console.log("Comanda limpada com sucesso!")
+  } catch (error){
+    console.error("Erro ao limpar comanda do cliente", error);
+    alert("Erro ao limpar a comanda do cliente");
+  }
+  
 }
