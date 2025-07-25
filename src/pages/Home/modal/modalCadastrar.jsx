@@ -52,6 +52,7 @@ function ModalCadastrar ({ onClose, atualizarClientes }) {
       <input
         type="number"
         value={telefoneInput}
+        max={11}
         onChange={(e) => setTelefoneInput(e.target.value)}
       />
 
