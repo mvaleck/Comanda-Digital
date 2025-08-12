@@ -51,6 +51,11 @@ A aplicação funciona tanto em **computadores** quanto em **dispositivos móvei
 
 ---
 
+## 💡 Link do site:
+https://lnkd.in/dw9qHs_w
+
+----
+
 ## 🔧 Como Rodar o Projeto Localmente
 
 1. **Clone o repositório**:
